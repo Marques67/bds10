@@ -16,8 +16,6 @@ type ControlComponentsData = {
 const List = () => {
   const [page, setPage] = useState<SpringPage<Employee>>();
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const [controlComponentData, setControlComponentData] =
     useState<ControlComponentsData>({
       activePage: 0,
@@ -40,14 +38,10 @@ const List = () => {
       },
     };
 
-    setIsLoading(true);
     requestBackend(config)
       .then((response) => {
         setPage(response.data);
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
   }, [controlComponentData]);
 
   useEffect(() => {
